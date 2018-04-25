@@ -58,4 +58,48 @@ class Queue
     {
         return nItems;
     }
+    //Problem 41
+    public void display()
+    {
+        // If no items
+        if (isEmpty())
+            System.out.print("No items in the queue.");
+        
+        // if one item
+        if (nItems == 1)
+        {
+            if(front == rear) // if front and rear indices are the same
+            {
+                System.out.print("One item: "+ queArray[front]);
+            }
+        }
+
+        //if array is full
+        if(isFull() || nItems > 1)
+        {
+            if(front < rear) // contiguous
+            {
+                for(int i=front; i <= rear; i++)
+                {
+                    System.out.print(queArray[i]);
+                    System.out.print(" ");
+                }
+            }
+            else  // broken sequence?
+            {
+                // Loop from front index to end of array (maxSize-1)
+                for(int i=front; i<= nItems-1; i++)
+                {
+                    System.out.print(queArray[i]);
+                    System.out.print(" ");
+                }
+
+                for(int j = 0; j<=rear; j++)
+                {
+                    System.out.print(queArray[j]);
+                    System.out.print(" ");                    
+                }
+            }
+        }
+    }
 }
