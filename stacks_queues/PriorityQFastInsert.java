@@ -35,7 +35,9 @@ class PriorityQFastInsert
     // Problem 4.4
     public void insert(long item)
     {
-        queArray[nItems++] = item; // fast insert
+        //System.out.println("nItems = " + nItems);
+        queArray[nItems] = item; // fast insert
+        nItems++;
     }
     public long remove() // remove minimum item
     {
@@ -43,8 +45,9 @@ class PriorityQFastInsert
         int minIndex = getMinIndex();
         System.out.println("Min Index: " + minIndex);
         long minValue = queArray[minIndex];
+        System.out.println("minValue = " + minValue);
 
-        for(int i = minIndex; i < maxSize-1; i++)
+        for(int i = minIndex; i < nItems-1; i++)
         {
             queArray[i] = queArray[i+1];
         }
@@ -56,13 +59,26 @@ class PriorityQFastInsert
     public int getMinIndex()
     {
         int minIndex = 0;
-        for (int i = 0; i < maxSize-1; i++)
+        for (int i = 0; i < nItems; i++)
         {
+            //System.out.println("Index i: " + i);
+            //System.out.println(queArray[minIndex] + " > " + queArray[i] + "?");
             if (queArray[minIndex] > queArray[i])
                 minIndex = i;
         }
 
         return minIndex;
+    }
+
+    public void display()
+    {
+        long [] copy = queArray;
+        long [] pqArray = new long[maxSize];
+
+        for(int i=0; i < nItems; i++)
+        {
+            //long item = 
+        }
     }
     public long peekMin() // peek at minimum item
     {

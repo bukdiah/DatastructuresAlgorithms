@@ -4,25 +4,26 @@ class Problem44
     {
         
         PriorityQFastInsert thePQ = new PriorityQFastInsert(5);
+        
         thePQ.insert(30);
         thePQ.insert(50);
-        //thePQ.insert(10);
+        thePQ.insert(10);
         thePQ.insert(40);
-        //thePQ.insert(20);
+        thePQ.insert(5);
 
-        System.out.println("First Item removed: "+ thePQ.remove());
-        System.out.println("Second Item removed: "+ thePQ.remove());
-        System.out.println("Third Item removed: "+ thePQ.remove());
-        
+        thePQ.display();
+        //thePQ.printArray();
+        //System.out.println("Min Index: "+thePQ.getMinIndex());
         /*
         while(!thePQ.isEmpty())
         {
             long item = thePQ.remove();
-            System.out.print(item + " "); // 10, 20, 30, 40, 50
+            System.out.print(item + " "); // 5, 10, 30, 40, 50
         }
         System.out.println("");*/
+        
         /*
-        long[] array = {30,50,10,20};
+        long[] array = {30,50,20};
         int min = 0;
         System.out.println("array.length" +array.length);
 
