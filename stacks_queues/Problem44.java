@@ -12,6 +12,20 @@ class Problem44
         thePQ.insert(5);
 
         thePQ.display();
+
+        thePQ.remove();
+
+        thePQ.display();
+
+        thePQ.remove();
+        
+        thePQ.display();
+        
+        thePQ.remove();
+        
+        thePQ.display();
+        
+        
         //thePQ.printArray();
         //System.out.println("Min Index: "+thePQ.getMinIndex());
         /*

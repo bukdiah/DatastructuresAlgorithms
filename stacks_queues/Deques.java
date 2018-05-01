@@ -83,7 +83,7 @@ class Deques
             value = a[left];
             left++; // move left marker
         }
-
+        nItems--;
         return value;
     }
 
@@ -95,7 +95,7 @@ class Deques
             value = a[right];
             right--;
         }
-
+        nItems--;
         return value;
     }
 
