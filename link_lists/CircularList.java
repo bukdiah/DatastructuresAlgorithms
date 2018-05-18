@@ -13,16 +13,15 @@ class CircularList
         Link2 newLink = new Link2(dd);
         if(isEmpty())
         {
-            current = newLink;
-            newLink.next = current;
+            current = newLink;      // current --> newLink
+            newLink.next = current; // current <-- newLink
         }
         else
         {
-            
+            newLink.next = current.next;
+            current.next = newLink;
+            current = newLink;
         }
-        /*
-        newLink.next = current;
-        current = newLink;*/
     }
 
     public boolean isEmpty()
@@ -32,12 +31,14 @@ class CircularList
 
     public void displayList()
     {
-        Link2 temp = current; // start at current marker
-        while(temp != null)
+        long currentValue = current.dData;
+
+        while(true)
         {
-            temp.displayLink();
-            current = temp.next;
+            current.displayLink();
+            current = current.next;
+
         }
-        System.out.println("");
+   
     }
 }
