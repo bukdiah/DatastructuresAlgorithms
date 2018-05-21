@@ -18,9 +18,60 @@ class CircularList
         }
         else
         {
-            newLink.next = current.next;
-            current.next = newLink;
-            current = newLink;
+            newLink.next = current.next; // old current <-- new Link
+            current.next = newLink; // old current --> newLink
+            current = newLink; // current --> newLink
+        }
+    }
+
+    public void delete()
+    {
+        if(!isEmpty())
+        {
+            long currentValue = current.dData;
+            Link2 head = current.next;
+            Link2 prev_current = current;
+            step(); // current points to next link now
+            System.out.println("Prev_current points to value "+ prev_current.dData);
+            System.out.println("Current points to value: "+ current.dData);
+
+            while(true)
+            {
+                if(currentValue != current.dData)
+                {
+                    prev_current = current;
+                    step();
+                }
+                else
+                {
+                    current.next = null;
+                    current = prev_current;
+                    current.next = head;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void search(long key)
+    {
+        if(!isEmpty())
+        {
+            //long currentValue = current.dData;
+
+            while(true)
+            {
+                if(key == current.dData)
+                {
+                    System.out.println("Have FOUND item with the key " + key);
+                    break;
+                }
+                else
+                {
+                    System.out.println("Searching for item with the key "+ key);
+                    step();
+                }
+            }
         }
     }
 
@@ -36,9 +87,18 @@ class CircularList
         while(true)
         {
             current.displayLink();
-            current = current.next;
+            step();
+
+            if(current.dData == currentValue)
+                break;
 
         }
+        System.out.println("");
    
+    }
+
+    public void step()
+    {
+        current = current.next;
     }
 }
