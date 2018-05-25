@@ -53,6 +53,39 @@ class CircularList
         }
     }
 
+    public long deleteReturnVal()
+    {
+        long currentValue = current.dData;
+        
+        if(!isEmpty())
+        {
+            //long currentValue = current.dData;
+            Link2 head = current.next;
+            Link2 prev_current = current;
+            step(); // current points to next link now
+           // System.out.println("Prev_current points to value "+ prev_current.dData);
+           // System.out.println("Current points to value: "+ current.dData);
+
+            while(true)
+            {
+                if(currentValue != current.dData)
+                {
+                    prev_current = current;
+                    step();
+                }
+                else
+                {
+                    current.next = null;
+                    current = prev_current;
+                    current.next = head;
+                    break;
+                }
+            }
+        }
+
+        return currentValue;
+    }
+
     public void search(long key)
     {
         if(!isEmpty())
