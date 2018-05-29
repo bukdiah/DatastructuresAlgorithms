@@ -6,6 +6,9 @@ class Problem61
 
     System.out.println("5 * 5 or mult(5,5) = " + mult(5,5));
 
+    System.out.println("5 * 6 or mult(5,5) = " + mult(5,6));
+
+
   }
 
   public static int mult(int x, int y)

@@ -8,7 +8,7 @@ class Problem64
     sack = new double[]{11, 8, 7, 6, 5};
     if(!knapsack(37, 0)) System.out.println("No valid combinations");
     
-    // knapsack(20, 0);
+     knapsack(20, 0);
   }
   
   public static Boolean knapsack(int target, int index)

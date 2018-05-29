@@ -3,9 +3,9 @@ class Problem63
 {
   public static void main(String[] args)
   {
-    // System.out.println("2^9 = 512");
-    // System.out.println("power(2,9) = " + power(2,9) );
-    // System.out.println("");
+     System.out.println("2^9 = 512");
+     System.out.println("power(2,9) = " + power(2,9) );
+     System.out.println("");
      System.out.println("2^8 = 256");
      System.out.println("power(2,8) = " + pow(2,8));
      System.out.println("");
