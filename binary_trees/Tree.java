@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 import javax.lang.model.util.ElementScanner6;
 
 class Tree
@@ -5,6 +7,10 @@ class Tree
   // Tree class holds all the nodes
   private Node root; // the only data field in tree
 
+  public Tree()
+  {
+    root = null; // no nodes in tree yet
+  }
   // find node with given key (assumes non empty tree)
   public Node find(int key) {
     Node current = root; // start at roo
@@ -219,6 +225,69 @@ class Tree
       }
   
       return current;
+    }
+
+    public void traverse(int traverseType)
+    {
+      switch(traverseType)
+      {
+        case 1: System.out.print("\nPreorder traversal: ");
+          preOrder(root);
+          break;
+        case 2: System.out.print("\nInorder traversal: ");
+          inOrder(root);
+          break;
+        case 3: System.out.print("\nPostorder traversal: ");
+          postOrder(root);
+          break;
+      }
+      System.out.println();
+    }
+
+    public void displayTree() 
+    { 
+      Stack globalStack = new Stack(); 
+      globalStack.push(root); 
+      int nBlanks = 32; 
+      boolean isRowEmpty = false; 
+      System.out.println( "......................................................");
+
+      while(isRowEmpty == false)
+      {
+        Stack<E> localStack = new Stack();
+        isRowEmpty = true;
+
+        for (int j=0; j<nBlanks; j++)
+          SYstem.out.print(' ');
+        
+          while(globalStack.isEmpty() == false)
+          {
+            Node temp = (Node) globalStack.pop();
+            if(temp != null)
+            {
+              System.out.println(temp.iData);
+              localStack.push(temp.leftChild);
+              localStack.push(temp.rightChild);
+
+              if(temp.leftChild != null || temp.rightChild !=null)
+                isRowEmpty = false;
+              else {
+                System.out.print("--");
+                localStack.push(null);
+                localStack.push(null);
+              }
+            }
+            for(int j=0; j<nBlanks*2-2; j++)
+            {
+              System.out.print(' ');
+            }
+          }
+          System.out.println();
+          nBlanks /= 2;
+          while(localStack.isEmpty() == false)
+            globalStack.push(localStack.pop());
+      }
+      System.out.println(".......................................................");
     }
 
 }
