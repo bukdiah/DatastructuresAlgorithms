@@ -1,7 +1,5 @@
 import java.util.Stack;
 
-import javax.lang.model.util.ElementScanner6;
-
 class Tree
 {
   // Tree class holds all the nodes
@@ -65,7 +63,7 @@ class Tree
 
   }
   // deletes node with given key (assumes non-empty list)
-  public boolean delete(int id) {
+  public boolean delete(int key) {
     Node current = root;
     Node parent = root;
     boolean isLeftChild = true;
@@ -107,7 +105,7 @@ class Tree
         parent.leftChild = current.leftChild;
       else // right child of parent
         parent.rightChild = current.leftChild;
-    // if no left child, replace with left subtree    
+    // if no left child, replace with right subtree    
     else if(current.leftChild == null)
       if(current == root)
         root = current.rightChild;
@@ -128,8 +126,8 @@ class Tree
       else
         parent.rightChild = successor;
       
-        //connect successor to current's left child
-        successor.leftChild = current.leftChild;
+      //connect successor to current's left child
+      successor.leftChild = current.leftChild;
     }
     // successor cannot have a left child
     return true;
@@ -191,9 +189,9 @@ class Tree
   private void postOrder(Node localRoot)
   {
 
-    preOrder(localRoot.leftChild);
+    postOrder(localRoot.leftChild);
 
-    preOrder(localRoot.rightChild);
+    postOrder(localRoot.rightChild);
     System.out.print(localRoot.iData + " ");
   }
 
@@ -254,11 +252,11 @@ class Tree
 
       while(isRowEmpty == false)
       {
-        Stack<E> localStack = new Stack();
+        Stack localStack = new Stack();
         isRowEmpty = true;
 
         for (int j=0; j<nBlanks; j++)
-          SYstem.out.print(' ');
+          System.out.print(' ');
         
           while(globalStack.isEmpty() == false)
           {

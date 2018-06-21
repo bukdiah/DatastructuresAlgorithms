@@ -5,10 +5,10 @@ class Node
   Node leftChild;
   Node rightChild;
 
-  public Node(int iData, double fData)
+  public Node(int iData, double dData)
   {
     this.iData = iData;
-    this.fData = fData;
+    this.dData = dData;
   }
   public void displayNode()
   {
