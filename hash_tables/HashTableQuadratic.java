@@ -1,10 +1,10 @@
-class HashTableDouble
+class HashTableQuadratic
 {
   private DataItem[] hashArray; // array holds hash table
   private int arraySize;
   private DataItem nonItem; // for deleted items
 
-  public HashTableDouble(int size)
+  public HashTableQuadratic(int size)
   {
     arraySize = size;
     hashArray = new DataItem[arraySize];
@@ -22,25 +22,21 @@ class HashTableDouble
     System.out.println("");
   }
 
-  public int hashFunc1(int key) {
+  public int hashFunc(int key) {
     return key % arraySize; // hash function
   }
 
-  public int hashFunc2(int key) {
-    // non-zero, less than array size, different from hashFunc1
-    // array size must be relatively prime to 5,4,3, and 2
-    return 5 - key % 5; // hash function
-  }
-
   // insert a DataItem
-  public void insert(int key, DataItem item) {
+  public void insert(DataItem item) {
     // assumes table is not full
-    int hashVal = hashFunc1(key); // hash the key
-    int stepSize = hashFunc2(key); // get step size
+    int key = item.getKey(); // extract key
+    int hashVal = hashFunc(key); // hash the key
+    int probe = 1; // starting value
 
     // until empty cell or -1,
     while(hashArray[hashVal] != null && hashArray[hashVal].getKey() != -1) {
-      hashVal += stepSize; // add the step
+      ++probe;
+      hashVal = hashVal + probe*probe; // go to next probe position
       hashVal %= arraySize; // wraparound if necessary
     }
     hashArray[hashVal] = item; // insert item
@@ -49,7 +45,7 @@ class HashTableDouble
   // delete a DataItem
   public DataItem delete(int key) {
     int hashVal = hashFunc(key); // hash the key
-    int stepSize = hashFunc2(key); // get the step size
+    int probe = 1; // starting value
 
     // until empty cell,
     while(hashArray[hashVal] != null) {
@@ -60,8 +56,10 @@ class HashTableDouble
         return temp;
       }
 
-      hashVal += stepSize; // add the step
+      ++probe;
+      hashVal = hashVal + probe*probe; // go to next probe position
       hashVal %= arraySize; // wraparound if necessary
+
     }
     return null; // cannot find item 
   }
@@ -69,14 +67,13 @@ class HashTableDouble
   // find item with key
   public DataItem find(int key) {
     int hashVal = hashFunc(key);
-    int stepSize = hashFunc2(key);
-
+    int probe = 1;
     while(hashArray[hashVal] != null) {
       if(hashArray[hashVal].getKey() == key) {
         return hashArray[hashVal]; // found the key, so return the item
       }
-      hashVal += stepSize;
-      hashVal %= arraySize;
+      ++probe;
+      hashVal = hashVal + probe*probe; // go to next probe position
     }
     return null; //cannot find item
   }
