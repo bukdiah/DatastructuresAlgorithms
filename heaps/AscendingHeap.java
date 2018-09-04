@@ -1,10 +1,11 @@
-class Heap
+class AscendingHeap
 {
   private Node[] heapArray;
   private int maxSize; // size of array
   private int currentSize; // number of nodes in array
 
-  public Heap(int mx)
+  // node at the root is the smallest versus largest
+  public AscendingHeap(int mx)
   {
     maxSize = mx;
     currentSize = 0;
@@ -26,35 +27,12 @@ class Heap
     return true; // success
   }
 
-  // Problem 12.2
-
-  //toss method insert without maintain heap condition
-  public boolean toss(int key)
-  {
-    if(currentSize == maxSize) // if array is full
-      return false; // failure
-    Node newNode = new Node(key); // make a new node
-    heapArray[currentSize] = newNode; // put it at the end of array
-    currentSize++;
-    return true;
-  }
-
-  public void restoreHeap()
-  {
-    System.out.println("restoreHeap called");
-    System.out.println("currentSize = " + currentSize);
-    for(int j = currentSize/2-1; j>=0; j--)
-    {
-      trickleDown(j);
-    }
-  }
-
   public void trickleUp(int index)
   {
     int parent = (index - 1) / 2;
     Node bottom = heapArray[index];
-    
-    while(index > 0 && heapArray[parent].getKey() < bottom.getKey())
+
+    while(index > 0 && heapArray[parent].getKey() > bottom.getKey())
     {
       heapArray[index] = heapArray[parent]; // move node down
       index = parent; // move index up
@@ -73,7 +51,7 @@ class Heap
 
   public void trickleDown(int index)
   {
-    int largerChild;
+    int smallerChild;
     Node top = heapArray[index]; // save root
 
     while(index < currentSize/2) // while node has at least one child
@@ -83,17 +61,17 @@ class Heap
 
       // find larger child (rightChild exists?)
       if(rightChild < currentSize && heapArray[leftChild].getKey() < heapArray[rightChild].getKey())
-        largerChild = rightChild;
+        smallerChild = leftChild;
       else
-        largerChild = leftChild;
+        smallerChild = rightChild;
       
         // top>=largerChild?
-        if(top.getKey() >= heapArray[largerChild].getKey())
+        if(top.getKey() <= heapArray[smallerChild].getKey())
           break;
         
         // shift child up
-        heapArray[index] = heapArray[largerChild];
-        index = largerChild; // go down
+        heapArray[index] = heapArray[smallerChild];
+        index = smallerChild; // go down
     }
     heapArray[index] = top; // root to index
   }
