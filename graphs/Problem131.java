@@ -1,6 +1,6 @@
-class MSTApp
+class Problem131
 {
-  public static void main(String[] args)
+  public static void main(String [] args)
   {
     Graph theGraph = new Graph();
     theGraph.addVertex('A'); // 0 (start for mst)
@@ -21,7 +21,7 @@ class MSTApp
     theGraph.addEdge(3, 4);     // DE 
 
     System.out.print("Minimum spanning tree: ");
-    theGraph.mst();
+    theGraph.mst_2();
     System.out.println();
   }
 }

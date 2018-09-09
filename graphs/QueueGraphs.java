@@ -31,4 +31,10 @@ class QueueGraphs
   {
     return (rear+1 == front || (front+SIZE-1 == rear));
   }
+
+  //peek at front of queue
+  public int peekFront()
+  {
+      return queArray[front];
+  }
 }

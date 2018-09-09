@@ -155,4 +155,33 @@ class Graph
     for(int j=0; j<nVerts; j++)
       vertexList[j].wasVisited = false;
   }
+
+  //Problem 13.1
+  // MST using BFS
+  public void mst_2()
+  {
+    // begin with vertex 0
+    vertexList[0].wasVisited = true; // mark it
+    //displayVertex(0);
+    theQueue.insert(0); // insert at tail
+    int v2;
+
+    while(!theQueue.isEmpty())
+    {
+      int currentVertex = theQueue.peekFront();
+      int v1 = theQueue.remove(); // remove vertex at head
+      // until it has no unvisited neighbors
+      while((v2 = getAdjUnvisitedVertex(v1)) != -1)
+      { // get one
+        vertexList[v2].wasVisited = true; // mark it
+        theQueue.insert(v2); // insert it
+      }
+    }
+
+    // queue is empty, so we're done
+    for(int j=0; j<nVerts; j++)
+    {
+      vertexList[j].wasVisited = false;
+    }    
+  }
 }
