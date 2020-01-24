@@ -168,12 +168,14 @@ class Graph
 
     while(!theQueue.isEmpty())
     {
-      int currentVertex = theQueue.peekFront();
       int v1 = theQueue.remove(); // remove vertex at head
       // until it has no unvisited neighbors
       while((v2 = getAdjUnvisitedVertex(v1)) != -1)
       { // get one
         vertexList[v2].wasVisited = true; // mark it
+        displayVertex(v1);
+        displayVertex(v2);
+        System.out.print(" ");
         theQueue.insert(v2); // insert it
       }
     }
